@@ -3,10 +3,9 @@ class CodingPractice1 {
     System.out.println(reverseString("hello world"));
   }
   
-  
+  // Reverse the characters in a string 
   public static String reverseString(String s) {
     
-    char[] charOfS = new char[s.length()];
     char[] reversedString = new char[s.length()];
     
     for(int i = s.length() - 1; i >= 0; i--) {
@@ -14,6 +13,6 @@ class CodingPractice1 {
       reversedString[(s.length()-1)- i] = s.charAt(i);
     }
     
-    return reversedString;
+    return new String(reversedString);
   }
 }
