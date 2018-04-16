@@ -128,4 +128,127 @@ class CodingPractice1 {
         }
         return false;
     }
+
+    // code_problem7 - Find a missing number in a list
+    public static int findMissingNumber(int[] arr) {
+
+        Set < Integer > nums = new HashSet < Integer > ();
+
+        for (int i = 1; i <= 10; i++) {
+            nums.add(i);
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            nums.remove(arr[i]);
+        }
+
+        int val = -1;
+        for (Integer numberino: nums) {
+            val = (int) numberino;
+        }
+        return val;
+    }
+    // code_problem8 - Reverse a string in Java
+    public static String reverseString(String str) {
+        String inputString = str;
+        String outputString = null;
+
+        if (str == null) return null;
+
+        char[] outStringChar = new char[str.length()];
+
+        for (int i = 0; i < inputString.length(); i++) {
+            outStringChar[i] = inputString.charAt(inputString.length() - 1 - i);
+        }
+        outputString = new String(outStringChar);
+        return outputString;
+    }
+    // code_problem9 - Find the first Non duplicate character in a string 
+    public static Character firstNonRepeatedCharacter(String str) {
+
+        if (str == null) {
+            return null;
+        } else if (str.length() == 1) {
+            return str.charAt(0);
+        }
+
+        HashMap < Character, Integer > hmap = new HashMap < Character, Integer > ();
+
+        for (int i = 0; i < str.length(); i++) {
+            if (hmap.get(str.charAt(i)) == null) hmap.put(str.charAt(i), 1);
+            else hmap.put(str.charAt(i), hmap.get(str.charAt(i)) + 1);
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (hmap.get(c) == 1) {
+                return c;
+            }
+        }
+        return null;
+    }
+    // code_problem10 - replace every space with a given string 
+    public static String replace(String a, String b) {
+
+        if (a == null || b == null) {
+            return null;
+        }
+
+        for (int i = 0; i < a.length(); i++) {
+            if (a.charAt(i) == ' ') {
+                a = replaceChar(a, i, b);
+            }
+        }
+
+        return a;
+    }
+
+    public static String replaceChar(String str, int n, String replacer) {
+
+        String front = str.substring(0, n);
+        String back = str.substring(n + 1, str.length());
+        return front + replacer + back;
+
+    }
+
+
+    // code_problem11 - replace every space with a given string TAKE 2 STRINGBUILDER
+    public static String replace(String a, String b) {
+
+        if (a == null) {
+            return null;
+        }
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < a.length(); i++) {
+
+            char c = a.charAt(i);
+            if (c == ' ') str.append(b);
+            else str.append(c);
+        }
+
+        return str.toString();
+    }
+
+    // code_problem12 - palindrome checker; return true if palindrome else false;
+    public static boolean isStringPalindrome(String str) {
+
+        if (str == null || str.length() == 0 || str.length() == 1) {
+            return true;
+        }
+
+        char[] reversedArr = new char[str.length()];
+
+        for (int i = 0; i < str.length(); i++) {
+
+            char c = str.charAt(i);
+            reversedArr[str.length() - 1 - i] = c;
+        }
+
+        String reversed = new String(reversedArr);
+
+        if (str.equals(reversed)) {
+            return true;
+        }
+        return false;
+    }
 }
