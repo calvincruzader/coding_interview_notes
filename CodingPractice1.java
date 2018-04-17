@@ -237,8 +237,8 @@ class CodingPractice1 {
         }
 
         char[] reversedArr = new char[str.length()];
-
         for (int i = 0; i < str.length(); i++) {
+
 
             char c = str.charAt(i);
             reversedArr[str.length() - 1 - i] = c;
@@ -250,5 +250,79 @@ class CodingPractice1 {
             return true;
         }
         return false;
+    }
+
+    // code_problem13 - insert a node at the end of a linked list 
+    public ListNode insertAtTail(ListNode head, int data) {
+
+        if (head == null) {
+            head = new ListNode(data);
+            return head;
+        }
+        ListNode newNode = new ListNode(data);
+        ListNode runningNode = head;
+        while (runningNode.next != null) {
+            runningNode = runningNode.next;
+        }
+        runningNode.next = newNode;
+
+        return head;
+    }
+
+    // code_problem14 - find out if all characters in a string are unique 
+    public static boolean areAllCharactersUnique(String str) {
+
+        if (str == null || str.length() == 0) {
+            return true;
+        }
+        Set < Character > uniques = new HashSet < Character > ();
+
+        for (int i = 0; i < str.length(); i++) {
+            Character c = str.charAt(i);
+            if (!uniques.contains(c)) {
+                uniques.add(c);
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // code_problem15 - find a single unique number take 2
+    public static int singleNumber(int[] A) {
+
+        HashMap < Integer, Integer > numCounts = new HashMap < Integer, Integer > ();
+
+        for (int i = 0; i < A.length; i++) {
+            if (numCounts.get(A[i]) == null) numCounts.put(A[i], 1);
+            else numCounts.put(A[i], numCounts.get(A[i]) + 1);
+        }
+        int numToReturn = 0;
+        for (Integer aKey: numCounts.keySet()) {
+            if (numCounts.get(aKey) == 1) numToReturn = aKey;
+        }
+
+        return numToReturn;
+    }
+
+    // code_problem16 - calc the power of a number 
+    public static double pow(double x, int n) {
+
+        if (n == 0) return 1;
+
+        double numToReturn = 1;
+        if (n < 0) {
+            for (int i = 0; i < Math.abs(n); i++) {
+                numToReturn *= x;
+            }
+
+            numToReturn = 1 / numToReturn;
+        } else {
+            for (int i = 0; i < Math.abs(n); i++) {
+                numToReturn *= x;
+            }
+        }
+
+        return numToReturn;
     }
 }
